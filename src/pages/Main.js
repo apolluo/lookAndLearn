@@ -1,18 +1,22 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {Icon, SearchBar, TabBar} from '@ant-design/react-native';
-export default class HomeScreen extends React.Component {
+import {View} from 'react-native';
+import {Icon, TabBar} from '@ant-design/react-native';
+import Home from '@components/business/Home';
+export default class MainScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'redTab',
+      selectedTab: 'Home',
+    };
+    this.screens = {
+      Home: Home,
     };
   }
-  renderContent(pageText) {
+  renderContent(screenName) {
+    const Screen = this.screens[screenName];
     return (
       <View style={{flex: 1, alignItems: 'center', backgroundColor: 'white'}}>
-        <SearchBar placeholder="Search" showCancelButton />
-        <Text style={{margin: 50}}>{pageText}</Text>
+        <Screen {...this.props} />
       </View>
     );
   }
@@ -28,34 +32,34 @@ export default class HomeScreen extends React.Component {
         tintColor="#33A3F4"
         barTintColor="#f5f5f5">
         <TabBar.Item
-          title="Life"
-          icon={<Icon name="home" />}
-          selected={this.state.selectedTab === 'blueTab'}
-          onPress={() => this.onChangeTab('blueTab')}>
-          {this.renderContent('Life Tab')}
+          title="首页"
+          icon={<Icon name="Home" />}
+          selected={this.state.selectedTab === 'Home'}
+          onPress={() => this.onChangeTab('Home')}>
+          {this.renderContent('Home')}
         </TabBar.Item>
-        <TabBar.Item
+        {/* <TabBar.Item
           icon={<Icon name="ordered-list" />}
-          title="Koubei"
+          title="发现"
           badge={2}
           selected={this.state.selectedTab === 'redTab'}
           onPress={() => this.onChangeTab('redTab')}>
-          {this.renderContent('Koubei Tab')}
+          {this.renderContent('find')}
         </TabBar.Item>
         <TabBar.Item
           icon={<Icon name="like" />}
-          title="Friend"
+          title="商城"
           selected={this.state.selectedTab === 'greenTab'}
           onPress={() => this.onChangeTab('greenTab')}>
-          {this.renderContent('Friend Tab')}
+          {this.renderContent('shop')}
         </TabBar.Item>
         <TabBar.Item
           icon={<Icon name="user" />}
-          title="My"
+          title="我"
           selected={this.state.selectedTab === 'yellowTab'}
           onPress={() => this.onChangeTab('yellowTab')}>
-          {this.renderContent('My Tab')}
-        </TabBar.Item>
+          {this.renderContent('my')}
+        </TabBar.Item> */}
       </TabBar>
     );
   }

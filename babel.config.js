@@ -12,6 +12,7 @@ module.exports = {
           '@components': './src/components',
           '@pages': './src/pages',
           '@utils': './src/utils',
+          '@store': './src/store',
         },
       },
     ],
