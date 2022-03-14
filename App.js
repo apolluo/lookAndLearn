@@ -12,7 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Main">
           <Stack.Screen
             name="Main"
             component={MainScreen}

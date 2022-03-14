@@ -5,6 +5,7 @@ import React from 'react';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
   render() {
     return (
@@ -13,7 +14,7 @@ export default class Home extends React.Component {
         <WhiteSpace size="lg" />
         <Button
           type="primary"
-          onPress={this.props.navigation.navigate('Learn')}>
+          onPress={() => this.props.navigation.navigate('Learn')}>
           开始记单词吧！
         </Button>
       </>
