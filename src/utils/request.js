@@ -10,12 +10,11 @@ import queryString from 'query-string';
 
 const request = {};
 
-request.get = (url, params, successCallBack, failCallBack) => {
-  if (params) {
-    url = `${API_BASE_URL}${url}${
-      params ? `?${queryString.stringify(params)}` : ''
-    }`;
-  }
+request.get = (apiPath, params, successCallBack, failCallBack) => {
+  const url = `${API_BASE_URL}${apiPath}${
+    params ? `?${queryString.stringify(params)}` : ''
+  }`;
+
   console.log('httpUtil -- GET -- URL : ' + url);
   return (
     fetch(url, {

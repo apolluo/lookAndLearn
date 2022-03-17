@@ -1,4 +1,4 @@
-import {getUser} from '@/store/actions/user';
+import {getUser, getUserInfo} from '@/store/actions/user';
 import {Button, SearchBar, WhiteSpace} from '@ant-design/react-native';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -11,7 +11,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUser('6232effc81f06039e0d5f175').then(res => {
+    this.props.getUserInfo('6232effc81f06039e0d5f175').then(res => {
       console.log('componentDidMount', res);
     });
   }
@@ -33,6 +33,7 @@ const mapStateToProps = (state, ownProps) => ({
   user: state.user,
 });
 const mapDispathToProps = dispatch => ({
-  getUser: () => dispatch(getUser()),
+  getUser: id => dispatch(getUser(id)),
+  getUserInfo: id => dispatch(getUserInfo(id)),
 });
 export default connect(mapStateToProps, mapDispathToProps)(Home);
