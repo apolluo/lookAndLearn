@@ -1,8 +1,8 @@
 import * as types from './types';
 import api from '../api/search';
 import DS from '../api/ds';
-import request from '../util/request';
-import {getTimeName} from '../util/index';
+import request from '@utilsrequest';
+import {getTimeName} from '@utilsindex';
 import storage from '../ds/storage';
 export let searchBooks = (text, rule, target) => {
   return dispatch => {

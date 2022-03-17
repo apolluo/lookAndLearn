@@ -1,11 +1,19 @@
+import {getUser} from '@/store/actions/user';
 import {Button, SearchBar, WhiteSpace} from '@ant-design/react-native';
 import React from 'react';
+import {connect} from 'react-redux';
 // import {View} from 'react-native';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
+  }
+
+  componentDidMount() {
+    this.props.getUser('6232effc81f06039e0d5f175').then(res => {
+      console.log('componentDidMount', res);
+    });
   }
   render() {
     return (
@@ -21,3 +29,10 @@ export default class Home extends React.Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => ({
+  user: state.user,
+});
+const mapDispathToProps = dispatch => ({
+  getUser: () => dispatch(getUser()),
+});
+export default connect(mapStateToProps, mapDispathToProps)(Home);

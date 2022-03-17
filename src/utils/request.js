@@ -4,14 +4,17 @@
 
 'use strict';
 
+import {API_BASE_URL} from '@/const';
 import queryString from 'query-string';
 // import config from '../common/config'
 
-var request = {};
+const request = {};
 
 request.get = (url, params, successCallBack, failCallBack) => {
   if (params) {
-    url += '?' + queryString.stringify(params);
+    url = `${API_BASE_URL}${url}${
+      params ? `?${queryString.stringify(params)}` : ''
+    }`;
   }
   console.log('httpUtil -- GET -- URL : ' + url);
   return (

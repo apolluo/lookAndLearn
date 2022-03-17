@@ -13,6 +13,8 @@ module.exports = {
           '@pages': './src/pages',
           '@utils': './src/utils',
           '@store': './src/store',
+          '@const': './src/const',
+          '@api': './src/api',
         },
       },
     ],
