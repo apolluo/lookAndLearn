@@ -1,16 +1,16 @@
 import {combineReducers} from 'redux';
-import search from './searchReducer';
 import bookStore from './bookStoreReducer';
 import chapter from './chapterReducer';
-import book from './bookReducer';
+import currentBook from './currentBook';
 import content from './contentReducer';
+import user from './user';
 
 const indexReducer = combineReducers({
-  search,
   bookStore,
-  book,
+  currentBook,
   chapter,
   content,
+  user,
 });
 
 export default indexReducer;

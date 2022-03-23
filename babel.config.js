@@ -15,6 +15,7 @@ module.exports = {
           '@store': './src/store',
           '@const': './src/const',
           '@api': './src/api',
+          '@assets': './src/assets',
         },
       },
     ],
