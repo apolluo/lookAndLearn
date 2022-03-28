@@ -2,6 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {Icon, TabBar} from '@ant-design/react-native';
 import Home from '@components/business/Home';
+import BookStore from '@components/business/BookStore';
 export default class MainScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,8 @@ export default class MainScreen extends React.Component {
       selectedTab: 'Home',
     };
     this.screens = {
-      Home: Home,
+      Home,
+      BookStore,
     };
   }
   renderContent(screenName) {
@@ -21,6 +23,7 @@ export default class MainScreen extends React.Component {
     );
   }
   onChangeTab(tabName) {
+    console.log('onChangeTab', tabName);
     this.setState({
       selectedTab: tabName,
     });
@@ -38,15 +41,16 @@ export default class MainScreen extends React.Component {
           onPress={() => this.onChangeTab('Home')}>
           {this.renderContent('Home')}
         </TabBar.Item>
-        {/* <TabBar.Item
-          icon={<Icon name="ordered-list" />}
-          title="发现"
-          badge={2}
-          selected={this.state.selectedTab === 'redTab'}
-          onPress={() => this.onChangeTab('redTab')}>
-          {this.renderContent('find')}
-        </TabBar.Item>
+
         <TabBar.Item
+          icon={<Icon name="ordered-list" />}
+          title="书架"
+          badge={2}
+          selected={this.state.selectedTab === 'BookStore'}
+          onPress={() => this.onChangeTab('BookStore')}>
+          {this.renderContent('BookStore')}
+        </TabBar.Item>
+        {/*<TabBar.Item
           icon={<Icon name="like" />}
           title="商城"
           selected={this.state.selectedTab === 'greenTab'}

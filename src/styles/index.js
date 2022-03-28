@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
     width: 66,
     height: 80,
   },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+  },
 });
 
 export const homeStyles = StyleSheet.create({});

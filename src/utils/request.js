@@ -37,20 +37,26 @@ request.get = (apiPath, params, successCallBack, failCallBack) => {
   );
 };
 
-// request.post = (url, body, successCallBack, failCallBack) => {
-//   var options = Object.assign(config.header, {
-//     body: JSON.stringify(body)
-//   })
-//   console.log('httpUtil -- POST -- URL : ' + url + ' -- BODY : ' + body)
-//   return fetch(url, options)
-//     .then((response) => response.json())
-//     .then((response) => {
-//       console.log(response)
-//       successCallBack(response)
-//     })
-//     .catch((error) => {
-//       console.log(response)
-//       failCallback(error)
-//     })
-// }
+request.post = (url, body, successCallBack, failCallBack) => {
+  var options = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  };
+
+  console.log('httpUtil -- POST -- URL : ' + url + ' -- BODY : ' + body);
+  return fetch(url, options)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      successCallBack(response);
+    })
+    .catch(error => {
+      console.log(error);
+      failCallBack && failCallBack(error);
+    });
+};
 export default request;
