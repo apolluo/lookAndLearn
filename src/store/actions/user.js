@@ -18,12 +18,25 @@ export const getUserInfo = uid => dispatch =>
     })
     .then(action => action.data);
 
-export const readBook = (uid, bookId) => dispatch => {
-  console.log('readBook', uid, bookId);
-  return UserApi.readBook(uid, bookId).then(data =>
-    dispatch({
+export const readBook = (uid, body) => dispatch => {
+  console.log('readBook', uid, body);
+  return UserApi.readBook(uid, body).then(data => {
+    console.log('readbook return', data);
+    return dispatch({
       type: USER.READ_BOOK,
       data,
-    }),
-  );
+    });
+  });
+};
+export const getCurrentBook = userInfo => dispatch => {
+  let currentBook;
+  if (userInfo && userInfo.currentBookId) {
+    currentBook = userInfo.books.find(
+      item => item._id === userInfo.currentBookId,
+    );
+  }
+  return dispatch({
+    type: USER.GET_CURRENT_BOOK,
+    data: currentBook,
+  });
 };

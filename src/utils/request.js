@@ -37,26 +37,27 @@ request.get = (apiPath, params, successCallBack, failCallBack) => {
   );
 };
 
-request.post = (url, body, successCallBack, failCallBack) => {
+request.post = (apiPath, body, successCallBack, failCallBack) => {
   var options = {
     method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify(body),
   };
-
-  console.log('httpUtil -- POST -- URL : ' + url + ' -- BODY : ' + body);
-  return fetch(url, options)
-    .then(response => response.json())
-    .then(response => {
-      console.log(response);
-      successCallBack(response);
-    })
-    .catch(error => {
-      console.log(error);
-      failCallBack && failCallBack(error);
-    });
+  const url = `${API_BASE_URL}${apiPath}`;
+  console.log(
+    'httpUtil -- POST -- URL : ' + url + ' -- BODY : ' + options.body,
+  );
+  return (
+    fetch(url, options)
+      .then(response => response.json())
+      // .then(response => {
+      //   console.log(response);
+      //   successCallBack(response);
+      // })
+      .catch(error => {
+        console.log(error);
+        // failCallBack && failCallBack(error);
+      })
+  );
 };
 export default request;

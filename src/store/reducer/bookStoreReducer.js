@@ -5,7 +5,10 @@ export default function bookStore(state = initState, action) {
   switch (action.type) {
     case BOOK.GET_BOOK_STORE:
       console.log('GET_BOOK_STORE', action);
-      return action.data;
+      if (action.data) {
+        return action.data;
+      }
+      return state;
     case BOOK.UPDATE_BOOK_STORE:
       if (state.data && action.updateBook) {
         let books = [];

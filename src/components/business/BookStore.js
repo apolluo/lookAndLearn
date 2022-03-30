@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, Image} from 'react-native';
 import {layoutStyles, styles} from '@styles';
-import {getBookStore, readBook} from '@/store/actions/book';
+import {getBookStore} from '@/store/actions/book';
 import {connect} from 'react-redux';
 import {Button} from '@ant-design/react-native';
 
@@ -62,6 +62,5 @@ const mapDispathToProps = dispatch => ({
   // getAssets: () => dispatch(GET_ASSETS()),
   // loadBook: id => dispatch(loadBook(id)),
   getBookStore: () => dispatch(getBookStore()),
-  readBook: id => dispatch(readBook(id)),
 });
 export default connect(mapStateToProps, mapDispathToProps)(BookStore);
