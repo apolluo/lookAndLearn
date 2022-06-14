@@ -1,24 +1,24 @@
-import * as types from '../actions/types';
+import {USER} from '../actions/types';
 
-const initState = {};
-export default function book(state = initState, action) {
+const initState = {
+  _id: '',
+  name: '',
+  pronunciation: '',
+  comment: '',
+  components: [],
+  association: '',
+  sentences: [],
+};
+export default function (state = initState, action) {
   switch (action.type) {
-    case types.LOAD_CONTENT:
-      return Object.assign({}, state, {
-        [action.chapterIndex]: {
-          btns: action.btns,
-          text: action.text,
-        },
-      });
-    case types.STORE_BOOK:
+    case USER.READ_PAGE:
+      // const currentBook = action.data.currentBook.book;
+      // const currentChapter = action.data.currentBook.currentChapter;
+      // const pageIndex = action.data.pageIndex;
+      // const wordId = currentBook.chapters[currentChapter].words[pageIndex];
+
       return Object.assign({}, state, action.data);
-    case types.SAVE_BOOK:
-      return Object.assign({}, state, action.data);
-    case types.REMOVE_BOOK:
-      return Object.assign({}, state, {
-        isStored: 0,
-        isSaved: 0,
-      });
+
     default:
       return state;
   }

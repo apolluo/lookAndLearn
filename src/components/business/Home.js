@@ -52,7 +52,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View style={layoutStyles.box}>
+      <View style={layoutStyles.fullBox}>
         <SearchBar placeholder="查词" showCancelButton />
         {/* 你还没有添加任何书籍，去添加吧 */}
         <WhiteSpace size="lg" />

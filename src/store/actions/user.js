@@ -1,5 +1,6 @@
 import {USER} from '@store/actions/types';
 import * as UserApi from '@api/user';
+import * as BookApi from '@api/book';
 
 export const getUser = uid => dispatch =>
   UserApi.getUser(uid).then(data =>
@@ -38,5 +39,38 @@ export const getCurrentBook = userInfo => dispatch => {
   return dispatch({
     type: USER.GET_CURRENT_BOOK,
     data: currentBook,
+  });
+};
+
+export const readPage = (currentBook, pageIndex) => dispatch => {
+  let currentChapter = currentBook.currentChapter || 0;
+  let currentChapterPage = pageIndex;
+  if (pageIndex > currentBook.book.chapters[currentChapter].words.length) {
+    currentChapter += 1;
+    currentChapterPage = 0;
+  }
+  if (
+    currentChapter !== currentBook.currentChapter ||
+    currentChapterPage !== currentBook.currentChapterPage
+  ) {
+      UserApi.
+    dispatch({
+      type: USER.UPDATE_CURRENT_BOOK,
+      data: {
+        currentChapter,
+        currentChapterPage,
+      },
+    });
+  }
+  const wordId =
+    currentBook.book.chapters[currentChapter].words[currentChapterPage];
+
+  console.log('readPage', currentBook, pageIndex, currentChapter, wordId);
+
+  return BookApi.getWordInfo(wordId).then(data => {
+    dispatch({
+      type: USER.READ_PAGE,
+      data,
+    });
   });
 };
